@@ -401,3 +401,15 @@
 [1208/202507.213:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1209/095917.007:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [1209/103422.244:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1209/122454.336:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1209/124114.281:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[1209/125940.538:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1209/125940.538:ERROR:exception_snapshot_win.cc(99)] thread ID 6380 not found in process
+[1209/125940.538:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[1209/125940.759:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1209/125940.760:ERROR:exception_snapshot_win.cc(99)] thread ID 14996 not found in process
+[1209/125940.760:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[1209/125940.996:ERROR:process_reader_win.cc(151)] SuspendThread: Access is denied. (0x5)
+[1209/125940.997:ERROR:exception_snapshot_win.cc(99)] thread ID 16376 not found in process
+[1209/125940.997:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: An attempt was made to access an exiting process. (0xc000010a)
+[1209/130104.964:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)

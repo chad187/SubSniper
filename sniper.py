@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
@@ -7,6 +8,7 @@ from getpass import getpass
 import time
 import winsound
 import sys
+import os
 
 scheduled_jobs = 0
 browser = None
@@ -25,7 +27,6 @@ def login() :
 	WebDriverWait(browser, 3).until(EC.element_to_be_clickable((By.ID, 'Username')))
 	try :
 		assert 'Frontline - Sign In' in browser.title
-
 		elem = browser.find_element_by_name('Username')  # Find the search box
 		elem.send_keys(username)
 
@@ -149,8 +150,8 @@ def restart() :
 	global browser
 	winsound.PlaySound('./doh.wav', winsound.SND_FILENAME)
 	browser.quit()
-	browser = None
-	startup()
+	os.system('python ' + sys.argv[0] + ' ' + sys.argv[1] + ' ' + sys.argv[2])
+	sys.exit()
 
 def startup() :
 	global browser
@@ -160,5 +161,6 @@ def startup() :
 	if login() :
 		availableJobs()
 
-username, password = getPassword()
+username = sys.argv[1]
+password = sys.argv[2]
 startup()
