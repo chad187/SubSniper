@@ -24,12 +24,11 @@ def getPassword() :
 
 def login() :
 	browser.get('https://login.frontlineeducation.com/login?signin=db554d1e950518f569b0593e54dfbaa5&productId=ABSMGMT&clientId=ABSMGMT#/login')
-	WebDriverWait(browser, 3).until(EC.element_to_be_clickable((By.ID, 'Username')))
+	WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.ID, 'Username')))
 	try :
 		assert 'Frontline - Sign In' in browser.title
 		elem = browser.find_element_by_name('Username')  # Find the search box
 		elem.send_keys(username)
-
 		elem = browser.find_element_by_name('Password')
 		elem.send_keys(password + Keys.RETURN)
 		return waitForRedirect()
@@ -96,9 +95,11 @@ def checkJobs() :
 	refresh()
 	return
 def acceptJobs(job) :
+	global scheduled_jobs
 	summary = job.find_element_by_css_selector('tr.summary')
 	# summary.find_element_by_class_name('rejectButton').click() 
 	summary.find_element_by_class_name('acceptButton').click()
+	acceptModal()
 	detail = job.find_element_by_css_selector('tr.detail')
 	school = detail.find_element_by_class_name('location').text
 	localTime = time.asctime( time.localtime(time.time()) )
@@ -115,6 +116,12 @@ def acceptJobs(job) :
 	sys.stdout.flush()
 	return
 
+def acceptModal() :
+	if browser.findElement(By.xpath("//div[contains(@class, 'ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable')]")) :
+		modal = browser.findElement(By.xpath("//div[contains(@class, 'ui-dialog ui-widget ui-widget-content ui-corner-all ui-front ui-dialog-buttons ui-draggable')]"))
+		button = modal.find_elements_by_tag_name('button')[1]
+		button.click()
+
 def waitForRedirect() :
 	try :
 		return  WebDriverWait(browser, 20).until(EC.url_to_be('https://sub.aesoponline.com/Substitute/Home'), "URL never matched")
@@ -127,7 +134,7 @@ def waitForRedirect() :
 
 def find_full_view() :
 	try :
-		WebDriverWait(browser, 3).until(EC.presence_of_element_located((By.ID, 'ui-id-2')))
+		WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.ID, 'ui-id-2')))
 	except :
 		browser.find_element_by_link_text("Click Here to return to the 'Full View' of data.").click()
 		try :
